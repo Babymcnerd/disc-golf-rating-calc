@@ -1,0 +1,168 @@
+:root {
+  --green: #0f5132;
+  --green-bright: #198754;
+  --bg: #f4f6f5;
+  --card: #ffffff;
+  --text: #14201a;
+  --muted: #5b6b63;
+  --border: #d6ddd9;
+  --shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+}
+
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.4;
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+.app-header {
+  background: var(--green);
+  color: #fff;
+  padding: calc(env(safe-area-inset-top) + 18px) 20px 18px;
+  text-align: center;
+}
+.app-header h1 { margin: 0; font-size: 1.5rem; letter-spacing: 0.2px; }
+.tagline { margin: 4px 0 0; opacity: 0.85; font-size: 0.9rem; }
+
+main {
+  max-width: 560px;
+  margin: 0 auto;
+  padding: 16px 14px 8px;
+}
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 16px;
+  margin-bottom: 14px;
+  box-shadow: var(--shadow);
+}
+.card h2 { margin: 0 0 6px; font-size: 1.15rem; }
+
+.field { display: block; margin-bottom: 14px; }
+.field:last-child { margin-bottom: 0; }
+.field-label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--muted);
+  margin-bottom: 6px;
+}
+
+select, input[type="number"], input[type="text"] {
+  width: 100%;
+  font-size: 1.15rem;        /* >=16px avoids iOS zoom-on-focus */
+  padding: 13px 12px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: #fff;
+  color: var(--text);
+  -webkit-appearance: none;
+  appearance: none;
+}
+select { background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%235b6b63' stroke-width='3'><path d='M6 9l6 6 6-6'/></svg>"); background-repeat: no-repeat; background-position: right 14px center; padding-right: 38px; }
+input:focus, select:focus { outline: 2px solid var(--green-bright); outline-offset: 1px; }
+
+.result {
+  margin-top: 8px;
+  text-align: center;
+  background: var(--green);
+  color: #fff;
+  border-radius: 12px;
+  padding: 18px 12px;
+}
+.result-rating { font-size: 3rem; font-weight: 800; line-height: 1; }
+.result-sub { margin-top: 6px; font-size: 0.9rem; opacity: 0.9; }
+
+.nearby {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 12px;
+  font-size: 1rem;
+}
+.nearby th, .nearby td {
+  padding: 9px 10px;
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+}
+.nearby th { color: var(--muted); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.5px; }
+.nearby tr.is-current td { background: #e8f3ec; font-weight: 700; }
+
+.reverse { margin-top: 14px; }
+.reverse summary, .card summary {
+  cursor: pointer;
+  font-weight: 600;
+  color: var(--green);
+  padding: 6px 0;
+}
+.reverse-result { font-size: 1.4rem; font-weight: 700; margin-top: 8px; }
+
+.hint { font-size: 0.85rem; color: var(--muted); margin: 0 0 12px; }
+
+/* Course rows */
+.course-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 8px 10px;
+  align-items: end;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border);
+}
+.course-row:last-of-type { border-bottom: none; }
+.course-row .name-field { grid-column: 1 / -1; }
+.course-row .nums {
+  grid-column: 1 / 2;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.course-row .remove {
+  grid-column: 2 / 3;
+  align-self: center;
+}
+.mini-label { font-size: 0.75rem; color: var(--muted); display: block; margin-bottom: 4px; }
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+.btn-secondary {
+  margin-top: 14px;
+  width: 100%;
+  padding: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--green);
+  background: #fff;
+  border: 1.5px solid var(--green);
+  border-radius: 10px;
+}
+.remove {
+  background: #fff;
+  border: 1px solid var(--border);
+  color: #b02a37;
+  border-radius: 8px;
+  width: 40px;
+  height: 40px;
+  font-size: 1.2rem;
+  line-height: 1;
+}
+
+.help-list { padding-left: 20px; margin: 8px 0; }
+.help-list li { margin-bottom: 8px; }
+code { background: #eef2f0; padding: 1px 5px; border-radius: 5px; font-size: 0.9em; }
+
+.app-footer {
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.8rem;
+  padding: 8px 16px 24px;
+}

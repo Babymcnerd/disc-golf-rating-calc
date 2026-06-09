@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#0f5132" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="DG Rating" />
+  <link rel="apple-touch-icon" href="icon-192.png" />
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="stylesheet" href="styles.css" />
+  <title>Disc Golf Rating Calculator</title>
+</head>
+<body>
+  <header class="app-header">
+    <h1>Disc Golf Rating</h1>
+    <p class="tagline">Estimate your PDGA round rating per course</p>
+  </header>
+
+  <main>
+    <!-- Calculator -->
+    <section class="card" id="calc-card">
+      <label class="field">
+        <span class="field-label">Course</span>
+        <select id="course-select"></select>
+      </label>
+
+      <label class="field">
+        <span class="field-label">Your score (total throws)</span>
+        <input id="score-input" type="number" inputmode="numeric" step="1"
+               placeholder="e.g. 52" />
+      </label>
+
+      <div id="result" class="result" aria-live="polite">
+        <div class="result-rating" id="result-rating">—</div>
+        <div class="result-sub" id="result-sub">Pick a course and enter a score</div>
+      </div>
+
+      <table class="nearby" id="nearby-table" hidden>
+        <thead>
+          <tr><th>Score</th><th>Rating</th></tr>
+        </thead>
+        <tbody id="nearby-body"></tbody>
+      </table>
+
+      <details class="reverse">
+        <summary>Reverse lookup — score needed for a target rating</summary>
+        <label class="field">
+          <span class="field-label">Target rating</span>
+          <input id="target-input" type="number" inputmode="numeric" step="1"
+                 placeholder="e.g. 1000" />
+        </label>
+        <div class="reverse-result" id="reverse-result">—</div>
+      </details>
+    </section>
+
+    <!-- Courses management -->
+    <section class="card" id="courses-card">
+      <h2>My Courses</h2>
+      <p class="hint">Set each course's <strong>SSA</strong> (the score a 1000-rated player
+        shoots). <strong>Points/throw</strong> defaults to 10 — refine it for accuracy. Changes
+        save automatically.</p>
+      <div id="courses-list"></div>
+      <button id="add-course" class="btn-secondary" type="button">+ Add course</button>
+    </section>
+
+    <!-- Help -->
+    <section class="card">
+      <details>
+        <summary><strong>How do I find a course's SSA?</strong></summary>
+        <ol class="help-list">
+          <li>Go to <strong>pdga.com</strong> and open an event's results page for the
+            course, layout, and division you play.</li>
+          <li>Look at the <em>score</em> and <em>round rating</em> columns.</li>
+          <li>The <strong>SSA</strong> is the score that lines up with a <strong>1000</strong>
+            round rating. Find a round rated right around 1000 — that player's score is the
+            SSA. (Or pick two players and estimate the score halfway to 1000.)</li>
+          <li>Type that score into the course's <strong>SSA</strong> field above.</li>
+          <li><strong>Optional (more accurate):</strong> set <em>Points/throw</em> from two
+            players: <code>(ratingA − ratingB) ÷ (scoreB − scoreA)</code>.</li>
+        </ol>
+        <p class="hint">Formula used: <code>Rating = 1000 + (SSA − Score) × Points/throw</code>.
+          SSA shifts with layout, weather, and season, so update it now and then.</p>
+      </details>
+    </section>
+  </main>
+
+  <footer class="app-footer">
+    Works offline · Add to Home Screen to use as an app
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
